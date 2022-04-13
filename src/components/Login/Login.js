@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.css'
 import auth from '../../firebase.init'
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
@@ -10,7 +10,10 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth);
+
     const navigate = useNavigate();
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/'
 
     const handleLoginemail = (event) => {
         setEmail(event.target.value);
@@ -25,7 +28,7 @@ const Login = () => {
     }
 
     if (user) {
-        navigate('/shop')
+        navigate(from, { replace: true })
     }
 
 
@@ -38,7 +41,7 @@ const Login = () => {
                         <p style={{ color: 'red' }}>{error?.message}</p>
                         <div className='input-group'>
                             <label htmlFor="email">Email</label>
-                            <input onBlur={handleLoginemail} type="email" name="Email" id="" required />
+                            <input onBlur={handleLoginemail} type="email" name="Email" id="1" required />
                         </div>
                         <div className='input-group'>
                             <label htmlFor="password">Password</label>
@@ -49,7 +52,7 @@ const Login = () => {
                         }
                         <input className='form-submit' type="submit" value="Login" />
                     </form>
-                    <p>New to Ema-john? <Link class='login-link' to='/signup'>Create New Account</Link></p>
+                    <p>New to Ema-john? <Link className='login-link' to='/signup'>Create New Account</Link></p>
                     <div className='option'>
                         <div className='line'></div>
                         <p className='line-text'>or</p>

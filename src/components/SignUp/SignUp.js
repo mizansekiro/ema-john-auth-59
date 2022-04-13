@@ -49,7 +49,7 @@ const SignUp = () => {
                     <form onSubmit={handleSubmit}>
                         <div className='input-group'>
                             <label htmlFor="email">Email</label>
-                            <input onBlur={handleEmail} type="email" name="Email" id="" required />
+                            <input onBlur={handleEmail} type="email" name="Email" id="0" required />
                         </div>
                         <div className='input-group'>
                             <label htmlFor="password">Password</label>
@@ -62,7 +62,7 @@ const SignUp = () => {
                         </div>
                         <input className='form-submit' type="submit" value="Sign Up" />
                     </form>
-                    <p>Have an account? <Link class='login-link' to='/login'>Login</Link></p>
+                    <p>Have an account? <Link className='login-link' to='/login'>Login</Link></p>
                     <div className='option'>
                         <div className='line'></div>
                         <p className='line-text'>or</p>
